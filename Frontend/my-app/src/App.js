@@ -8,14 +8,22 @@ const UrlShortener = () => {
   const [error, setError] = useState('');
 
   const handleShorten = async () => {
+    
     try {
-      const response = await fetch(`/api/shorten?url=${encodeURIComponent(originalUrl)}`);
-      const { shortUrl } = await response.json();
-      setShortenedUrl(shortUrl);
-      setError('');
-    } catch {
+      const url = `http://127.0.0.1:8080/?url=${encodeURIComponent(originalUrl)}`;
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (response.ok && data.shortUrl) {
+        setShortenedUrl(data.shortUrl);
+        setError('');
+      } else {
+        throw new Error('Failed to shorten URL');
+      }
+    } catch (err) {
       setError('Failed to shorten URL. Please try again later.');
       setShortenedUrl('');
+      console.error(err);
     }
   };
 

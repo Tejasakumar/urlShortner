@@ -13,7 +13,7 @@ var MyDomain string = "127.0.0.1:8080"
 
 func ProcessURI(resourceLocator string) string {
 	shortenedurl := url.URL{
-		Scheme:   "http",
+		Scheme:   "https",
         Host:     MyDomain,
         Path:     resourceLocator,
 		
