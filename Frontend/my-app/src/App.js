@@ -10,7 +10,12 @@ const UrlShortener = () => {
   const handleShorten = async () => {
     
     try {
-      const url = `http://127.0.0.1:8080/?url=${encodeURIComponent(originalUrl)}`;
+      const envURL = process.env.REACT_APP_API_URL
+      console.log(process.env.REACT_APP_API_URL);  // Should output the URL
+
+      const url = `${envURL}?url=${encodeURIComponent(originalUrl)}`;
+      console.log(url);
+      
       const response = await fetch(url);
       const data = await response.json();
 
@@ -62,7 +67,7 @@ const UrlShortener = () => {
           />
           <button
             onClick={handleCopy}
-            className={`p-2 rounded-md animate-float ${
+            className={`bg-teal-500 hover:bg-teal-600 hover:scale-110 transition-transform duration-300 text-white px-4 py-2 rounded-md text-sm w-auto ${
               copied ? 'bg-green-500 text-white' : 'bg-gray-700 text-white hover:bg-gray-600'
             }`}
           >
