@@ -26,3 +26,4 @@ go.work.sum
 dbuser
 main.go
 
+../Frontend/my-app/.env
