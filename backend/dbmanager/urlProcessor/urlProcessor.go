@@ -31,7 +31,7 @@ func Shorten(path string) string {
 	short := getRand(lengths[index])
 	dbLock.RLock()
 	redirectURL := dbmanager.FindOne(short)
-	if redirectURL == ""{
+	if redirectURL == "" {
 		dbLock.RUnlock()
 		dbLock.Lock()
 		dbmanager.InsertOne(path,short)
